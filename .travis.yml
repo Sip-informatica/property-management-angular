@@ -9,6 +9,11 @@ notifications:
   email:
     recipients:
       - open.hardware.libre@gmail.com
+before_script:
+  - npm install -g @angular/cli
+script:
+  - ng lint
+  - ng build --prod
 deploy:
   provider: heroku
   api_key: $HEROKU  
