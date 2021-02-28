@@ -1,16 +1,11 @@
 const PATH_PROJECT = '/dist/sip-property-management-angula';
-const express = require('express');
+import express, { static } from 'express';
 const app = express();
-const path = require('path');
+import { join } from 'path';
 
-const http = require('http');
-const server = http.createServer(app);
-
-app.use(express.static(__dirname + PATH_PROJECT));
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, PATH_PROJECT, index.html)));
-
-server.listen(process.env.PORT || 8080, () => {
-  if (!process.env.PORT) {
-    console.log('Running with Express... http://localhost:8080/');
-  }
+app.use(static(__dirname + PATH_PROJECT));
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname + PATH_PROJECT + '/index.html'));
 });
+
+app.listen(process.env.PORT || 5000);
