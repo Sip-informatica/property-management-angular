@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "14.16.0"
+branches:
+  only:
+    - master
+    - develop
+before_script:
+  - npm install -g @angular/cli
+script:
+  - ng lint
+  - ng build --prod
