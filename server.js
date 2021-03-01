@@ -1,4 +1,4 @@
-const PATH_PROJECT = '/dist/sip-property-management-angula';
+const PATH_PROJECT = '/dist/property-management-angular';
 const express = require('express');
 const app = express();
 
