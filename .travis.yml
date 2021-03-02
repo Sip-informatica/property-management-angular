@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - "14.16.0"
+addons:
+  sonarcloud:
+    organization: "sip-informatica"
+    token:
+      secure: $SONAR
 branches:
   only:
     - master
@@ -11,9 +16,12 @@ notifications:
       - open.hardware.libre@gmail.com
 before_script:
   - npm install -g @angular/cli
+install:
+  - npm install
 script:
   - ng lint
   - ng build --prod
+  - sonar-scanner
 deploy:
   provider: heroku
   api_key: $HEROKU  
