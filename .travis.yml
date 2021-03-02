@@ -4,8 +4,7 @@ node_js:
 addons:
   sonarcloud:
     organization: "sip-informatica"
-    token:
-      secure: $SONAR
+    token: $SONAR
 branches:
   only:
     - master
