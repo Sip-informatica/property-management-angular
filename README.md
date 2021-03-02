@@ -2,6 +2,7 @@
 ### Property Management Angular
 ## Estado del código
 [![Build Status](https://travis-ci.com/Sip-informatica/property-management.svg?branch=develop)](https://travis-ci.com/Sip-informatica/property-management)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=property-management-angular&metric=alert_status)](https://sonarcloud.io/dashboard?id=property-management-angular)
 
 ## Build
 
