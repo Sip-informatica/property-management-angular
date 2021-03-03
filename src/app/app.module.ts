@@ -13,7 +13,7 @@ import { BoardAdminComponent } from './property-management/board-admin/board-adm
 import { BoardManagementComponent } from './property-management/board-management/board-management.component';
 import { BoardUserComponent } from './property-management/board-user/board-user.component';
 
-//import { authInterceptorProviders } from './_helpers/auth.interceptor';
+// import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { BoardUserComponent } from './property-management/board-user/board-user.
     HttpClientModule
   ],
   providers: [],
-  //providers: [authInterceptorProviders],
+  // providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
