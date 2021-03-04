@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '@env';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'responseType': 'text' })
+  responseType: 'text' as const,
 };
 
 @Injectable({
