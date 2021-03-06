@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-  reloadPage(): void {    
-    window.location.assign("#");
+  reloadPage(): void {
+    window.location.assign('#');
   }
 }
