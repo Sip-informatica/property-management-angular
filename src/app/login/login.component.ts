@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     );
   }
   reloadPage(): void {
-    window.location.origin;
+    const host = window.location.hostname;
+    window.location.assign(host);
   }
 }
