@@ -19,11 +19,11 @@ export class UserService {
   }
 
   getUserBoard(): Observable<any> {
-    return this.http.get(environment.API_URL_TEST + 'user', httpOptions);
+    return this.http.get(environment.API_URL_TEST + 'adminmanager', httpOptions);
   }
 
   getManagementBoard(): Observable<any> {
-    return this.http.get(environment.API_URL_TEST + 'mag', httpOptions);
+    return this.http.get(environment.API_URL_TEST + 'manager', httpOptions);
   }
 
   getAdminBoard(): Observable<any> {
