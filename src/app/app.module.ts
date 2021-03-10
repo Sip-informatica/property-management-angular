@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './property-management/board-admin/board-admin.component';
 import { BoardManagementComponent } from './property-management/board-management/board-management.component';
@@ -20,7 +19,6 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
     BoardManagementComponent,
