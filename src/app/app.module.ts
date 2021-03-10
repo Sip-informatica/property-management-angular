@@ -18,7 +18,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,   
+    RegisterComponent,
     ProfileComponent,
     BoardAdminComponent,
     BoardManagementComponent,
