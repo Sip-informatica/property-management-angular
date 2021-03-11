@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from '@core/token-storage.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,10 @@ export class AppComponent implements OnInit{
   showManagementBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) {}
+  constructor(private tokenStorageService: TokenStorageService, private primengConfig: PrimeNGConfig) {}
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {

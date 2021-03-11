@@ -10,6 +10,7 @@ import { BoardUserComponent } from './property-management/board-user/board-user.
 
 const routes: Routes = [
   { path: 'home',  loadChildren: () => import('./home/home.module').then(module => module.HomeModule) },
+  { path: 'shared',  loadChildren: () => import('./shared/primeng.module').then(module => module.PrimengModule) },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
