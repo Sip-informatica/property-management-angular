@@ -19,7 +19,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
