@@ -1,3 +1,12 @@
+<div class="p-d-flex p-shadow-1 p-jc-center p-p-3 p-flex-column p-flex-wrap">
+  <div class="p-d-flex p-mb-3 p-shadow-3 p-jc-center p-p-3 p-flex-wrap">
+    <app-menubar class="p-shadow-6"></app-menubar>
+  </div>
+  <div class="p-d-flex p-shadow-1 p-jc-center p-p-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">app property management</a>
@@ -9,10 +18,14 @@
         <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
       </li>
       <li class="nav-item" *ngIf="showManagementBoard">
-        <a href="/management" class="nav-link" routerLink="management">Management Board</a>
+        <a href="/management" class="nav-link" routerLink="management"
+          >Management Board</a
+        >
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user"
+          >User</a
+        >
       </li>
     </ul>
 
@@ -27,15 +40,13 @@
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        <a href="/profile" class="nav-link" routerLink="profile">{{
+          username
+        }}</a>
       </li>
       <li class="nav-item">
         <a href class="nav-link" (click)="logout()">LogOut</a>
       </li>
     </ul>
   </nav>
-
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
 </div>
