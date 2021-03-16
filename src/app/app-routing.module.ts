@@ -11,7 +11,6 @@ import { MenubarComponent } from './shared/component/menubar/menubar.component';
 
 const routes: Routes = [
   { path: 'home',  loadChildren: () => import('./home/home.module').then(module => module.HomeModule) },
-  { path: 'shared',  loadChildren: () => import('./shared/primeng.module').then(module => module.PrimengModule) },
   { path: 'menubar', component: MenubarComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
