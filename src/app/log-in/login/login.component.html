@@ -1,75 +1,100 @@
-<div class="col-md-12">
-    <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
-      <form
-        *ngIf="!isLoggedIn"
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-        <div class="form-group">
-          <label for="username">Username</label>
+<div class="p-d-flex p-flex-wrap p-text-center">
+  <p-card
+    header="Iniciar Sesión"
+    subheader="Card Subheader"
+    [style]="{ width: '260px' }"
+    styleClass="p-card-shadow"
+  >
+    <ng-template pTemplate="header">
+      <div>
+        <p-avatar
+          icon="pi pi-user"
+          styleClass="p-mr-2"
+          [style]="{ width: '260px' }"
+          size="xlarge"
+        ></p-avatar>
+      </div>
+    </ng-template>
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <span class="p-float-label">
           <input
+            id="float-input"
             type="text"
-            class="form-control"
             name="username"
+            pInputText
             [(ngModel)]="form.username"
+            class="ng-invalid ng-dirty"
             required
             #username="ngModel"
           />
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="username.errors && f.submitted"
-          >
-            Username is required!
-          </div>
+          <label for="float-input">Username</label>
+        </span>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="username.errors && f.submitted"
+        >
+          Username is required!
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
+      </div>
+      <div class="form-group">
+        <span class="p-float-label">
+          <p-password
+            id="password"
             name="password"
             [(ngModel)]="form.password"
+            [toggleMask]="true"
             required
             minlength="6"
             #password="ngModel"
-          />
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="password.errors && f.submitted"
-          >
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">
-              Password must be at least 6 characters
-            </div>
+          ></p-password>
+          <label for="password">Password</label>
+        </span>
+
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="password.errors && f.submitted"
+        >
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
           </div>
         </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">
-            Login
-          </button>
-        </div>
-        <div class="form-group">
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="f.submitted && isLoginFailed"
-          >
-            Login failed: {{ errorMessage }}
-          </div>
-        </div>
-      </form>
-  
-      <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in as {{ roles }}.
       </div>
-    </div>
+      <div class="form-group">
+        <button pButton pRipple label="Login" icon="pi pi-user"></button>
+        <button
+          pButton
+          pRipple
+          label="Registrar"
+          icon="pi pi-sign-in"
+          class="p-button-secondary"
+          [style]="{ 'margin-left': '.5em' }"
+        ></button>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>
+
+<div class="col-md-12">
+  <div class="alert alert-success" *ngIf="isLoggedIn">
+    Logged in as {{ roles }}.
   </div>
+</div>
