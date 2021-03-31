@@ -11,6 +11,9 @@ import { CardModule, } from 'primeng/card';
 import { AvatarModule } from "primeng/avatar";
 import { InputTextModule } from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
+import {DividerModule} from 'primeng/divider';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import {PasswordModule} from 'primeng/password';
     AvatarModule,
     InputTextModule,
     PasswordModule,
+    DividerModule,
+    MessagesModule,
+    MessageModule,
   ]
 })
 export class LogInModule { }
