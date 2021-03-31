@@ -32,20 +32,34 @@
             [(ngModel)]="form.username"
             class="ng-dirty"
             required
+            minlength="3"
+            maxlength="20"
             #username="ngModel"
             [style]="{ width: '250px' }"
           />
           <label for="float-input">Nombre de usuario</label>
         </span>
-        <div class="alert-danger" *ngIf="username.errors && f.submitted">
+        <div *ngIf="username.errors && f.submitted">
           <div *ngIf="username.errors.required">
-            Nombre de usuario es requerido
+            <p-message
+              severity="error"
+              text="Nombre de usuario, requerido"
+              styleClass="p-m-2"
+            ></p-message>
           </div>
           <div *ngIf="username.errors.minlength">
-            Nombre de usuario debe tener al menos 3 caracteres
+            <p-message
+              severity="error"
+              text="Nombre de usuario debe tener al menos 3 caracteres"
+              styleClass="p-m-2"
+            ></p-message>
           </div>
           <div *ngIf="username.errors.maxlength">
-            Nombre de usuario no debe superar los 20 caracteres
+            <p-message
+              severity="error"
+              text="Nombre de usuario no debe superar los 20 caracteres"
+              styleClass="p-m-2"
+            ></p-message>
           </div>
         </div>
       </div>
@@ -65,10 +79,20 @@
           />
           <label for="email">Email</label>
         </span>
-        <div class="alert-danger" *ngIf="email.errors && f.submitted">
-          <div *ngIf="email.errors.required">Email es requerido</div>
+        <div *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors.required">
+            <p-message
+              severity="error"
+              text="Email, requerido"
+              styleClass="p-m-2"
+            ></p-message>
+          </div>
           <div *ngIf="email.errors.email">
-            Email debe ser una dirección valida
+            <p-message
+              severity="error"
+              text="Email debe ser una dirección valida"
+              styleClass="p-m-2"
+            ></p-message>
           </div>
         </div>
       </div>
@@ -80,25 +104,53 @@
           minlength="6"
           #password="ngModel"
           [toggleMask]="true"
-          promptLabel="Password"
-        ></p-password>
+          promptLabel="Elige una contraseña"
+        >
+          <ng-template pTemplate="header">
+            <p class="p-mt-2">Sugerencias</p>
+            <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+              <li>Al menos una minúscula</li>
+              <li>Al menos una mayúscula</li>
+              <li>Al menos un número</li>
+              <li>Mínimo 6 caracteres</li>
+            </ul>
+            <p-divider></p-divider>
+          </ng-template>
+        </p-password>
         <div class="alert-danger" *ngIf="password.errors && f.submitted">
-          <div *ngIf="password.errors.required">Password es requerido</div>
+          <div *ngIf="password.errors.required">
+            <p-message
+              severity="error"
+              text="Password es requerido"
+              styleClass="p-m-2"
+            ></p-message>
+          </div>
           <div *ngIf="password.errors.minlength">
-            Password debe contener mínimo 6 caracteres
+            <p-message
+              severity="error"
+              text="Password debe contener mínimo 6 caracteres"
+              styleClass="p-m-2"
+            ></p-message>
           </div>
         </div>
       </div>
-      <div class="form-group p-m-2">
-        <button  pButton pRipple label="Registrar" icon="pi pi-sign-in"></button>
+      <div class="form-group p-m-3">
+        <button pButton pRipple label="Registrar" icon="pi pi-sign-in"></button>
       </div>
-
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Ha fallado el registro!<br />{{ errorMessage }}
+      <div *ngIf="f.submitted && isSignUpFailed">
+        <p-message
+          severity="error"
+          text="Ha fallado el registro! {{ errorMessage }}"
+          styleClass="p-m-2"
+        ></p-message>
       </div>
     </form>
+    <div *ngIf="isSuccessful">
+      <p-message
+        severity="info"
+        text="Registro satisfactorio"
+        styleClass="p-m-2"
+      ></p-message>
+    </div>
   </p-card>
-</div>
-<div class="alert alert-success" *ngIf="isSuccessful">
-  Registro satisfactorio!
 </div>

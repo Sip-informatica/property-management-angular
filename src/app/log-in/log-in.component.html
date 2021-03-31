@@ -1,3 +1,16 @@
-<app-login></app-login>
+<header class="p-d-flex p-jc-center">
+  <div class="p-m-3">
+    <button pButton pRipple label="Login" icon="pi pi-user"  routerLink="login"></button>
+    <button
+      pButton
+      pRipple
+      label="Registrar"
+      icon="pi pi-sign-in"
+      class="p-button-secondary"
+      [style]="{ 'margin-left': '.5em' }"
+      routerLink="register"
+    ></button>
+  </div>
+</header>
 
 <router-outlet></router-outlet>
