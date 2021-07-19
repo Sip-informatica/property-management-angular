@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LogInComponent } from './log-in.component';
+import { AccountComponent } from './account.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-const routes: Routes = [{ path: '', component: LogInComponent,
+const routes: Routes = [{ path: '', component: AccountComponent,
 children: [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }

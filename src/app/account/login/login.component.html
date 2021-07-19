@@ -6,12 +6,12 @@
     styleClass="p-card-shadow"
   >
     <ng-template pTemplate="header">
-        <p-avatar
-          icon="pi pi-user"
-          styleClass="p-mr-2"
-          [style]="{ width: '300px' }"
-          size="xlarge"
-        ></p-avatar>
+      <p-avatar
+        icon="pi pi-user"
+        styleClass="p-mr-2"
+        [style]="{ width: '300px' }"
+        size="xlarge"
+      ></p-avatar>
     </ng-template>
     <form
       *ngIf="!isLoggedIn"
@@ -27,25 +27,27 @@
             type="text"
             name="username"
             pInputText
+            aria-describedby="username-help"
             [(ngModel)]="form.username"
             class="ng-dirty"
             required
             #username="ngModel"
           />
-          <label for="float-input">Nombre de usuario o email</label>
+          <label for="float-input"
+            ><small>Nombre de usuario o email</small></label
+          >
         </span>
         <div class="p-mt-2" role="alert" *ngIf="username.errors && f.submitted">
-          <p-message
-            severity="error"
-            text="Nombre de usuario o email es requerido"
-            styleClass="p-m-2"
-          ></p-message>
+          <small id="username-help" class="p-error"
+            >Nombre de usuario o email es requerido</small
+          >
         </div>
       </div>
       <div class="p-field p-m-3">
         <p-password
           name="password"
           [(ngModel)]="form.password"
+          aria-describedby="password-help"
           required
           minlength="6"
           #password="ngModel"
@@ -54,20 +56,20 @@
         ></p-password>
         <div class="p-mt-2" role="alert" *ngIf="password.errors && f.submitted">
           <div *ngIf="password.errors.required">
-            <p-message
-              severity="error"
-              text="Password es requerido"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="password-help" class="p-error">Password requerido</small>
           </div>
         </div>
       </div>
-      <div class="p-field p-m-3">
+      <div class="p-field p-m-4">
         <button pButton pRipple label="Login" icon="pi pi-user"></button>
-        <p-button routerLink="../register"  styleClass="p-button-link">Registrar</p-button>
-        <p-button routerLink="../forgot-password" styleClass="p-button-link">Forgot Password?</p-button>
+        <p-button routerLink="../register" styleClass="p-button-link"
+          >Registrar</p-button
+        >
+        <div class="p-field p-m-3">
+        <p-button routerLink="../forgot-password" styleClass="p-button-link"
+          ><small> Forgot Password?</small></p-button
+        ></div>
       </div>
-
       <div class="p-field">
         <div role="alert" *ngIf="f.submitted && isLoginFailed">
           <p-message

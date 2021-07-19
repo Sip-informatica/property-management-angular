@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'management', component: BoardManagementComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'log-in', loadChildren: () => import('./log-in/log-in.module').then(m => m.LogInModule) }
+  { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) }
 ];
 
 @NgModule({
