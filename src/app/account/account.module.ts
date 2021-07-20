@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LogInRoutingModule } from './account-routing.module';
+import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +23,7 @@ import {MessageModule} from 'primeng/message';
   ],
   imports: [
     CommonModule,
-    LogInRoutingModule,
+    AccountRoutingModule,
     FormsModule,
     CardModule,
     ButtonModule,

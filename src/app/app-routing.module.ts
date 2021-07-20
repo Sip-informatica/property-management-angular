@@ -8,19 +8,26 @@ import { BoardUserComponent } from './property-management/board-user/board-user.
 import { MenubarComponent } from './shared/component/menubar/menubar.component';
 
 const routes: Routes = [
-  { path: 'home',  loadChildren: () => import('./home/home.module').then(module => module.HomeModule) },
-  { path: 'menubar', component: MenubarComponent},
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./home/home.module').then((module) => module.HomeModule),
+  },
+  { path: 'menubar', component: MenubarComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'management', component: BoardManagementComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) }
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./account/account.module').then((m) => m.AccountModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,6 +1,6 @@
-<div class="p-d-flex p-flex-wrap p-text-center">
+<div class="p-d-flex p-flex-wrap p-text-center card">
   <p-card
-    header="Registrar Usuario"
+    header=""
     subheader=""
     [style]="{ width: '300px' }"
     styleClass="p-card-shadow"
@@ -22,13 +22,14 @@
       #f="ngForm"
       novalidate
     >
-      <div class="form-group p-m-2">
-        <span class="p-float-label">
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
           <input
             id="float-input"
             type="text"
             name="username"
             pInputText
+            aria-describedby="username-help"
             [(ngModel)]="form.username"
             class="ng-dirty"
             required
@@ -37,69 +38,61 @@
             #username="ngModel"
             [style]="{ width: '250px' }"
           />
-          <label for="float-input">Nombre de usuario</label>
+          <label for="float-input"><small>Teléfono o usuario</small></label>
         </span>
         <div *ngIf="username.errors && f.submitted">
           <div *ngIf="username.errors.required">
-            <p-message
-              severity="error"
-              text="Nombre de usuario, requerido"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="username-help" class="p-error"
+              >Requerido nombre de usuario</small
+            >
           </div>
           <div *ngIf="username.errors.minlength">
-            <p-message
-              severity="error"
-              text="Nombre de usuario debe tener al menos 3 caracteres"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="username-help" class="p-error"
+              >El nombre de usuario debe tener al menos 3 caracteres</small
+            >
           </div>
           <div *ngIf="username.errors.maxlength">
-            <p-message
-              severity="error"
-              text="Nombre de usuario no debe superar los 20 caracteres"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="username-help" class="p-error"
+              >El nombre de usuario no debe superar los 20 caracteres</small
+            >
           </div>
         </div>
       </div>
-      <div class="form-group p-m-2">
-        <span class="p-float-label">
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
           <input
             id="email"
             type="email"
             class="ng-dirty"
             name="email"
             pInputText
+            aria-describedby="email-help"
             [(ngModel)]="form.email"
             required
             email
             #email="ngModel"
             [style]="{ width: '250px' }"
           />
-          <label for="email">Email</label>
+          <label for="email"><small>Correo electrónico</small></label>
         </span>
         <div *ngIf="email.errors && f.submitted">
           <div *ngIf="email.errors.required">
-            <p-message
-              severity="error"
-              text="Email, requerido"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="email-help" class="p-error"
+              >Correo electrónico requerido</small
+            >
           </div>
           <div *ngIf="email.errors.email">
-            <p-message
-              severity="error"
-              text="Email debe ser una dirección valida"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="email-help" class="p-error"
+              >El correo electrónico debe tener una dirección valida</small
+            >
           </div>
         </div>
       </div>
-      <div class="form-group p-m-2">
+      <div class="p-field p-m-2">
         <p-password
           name="password"
           [(ngModel)]="form.password"
+          aria-describedby="password-help"
           required
           minlength="6"
           #password="ngModel"
@@ -119,23 +112,22 @@
         </p-password>
         <div class="alert-danger" *ngIf="password.errors && f.submitted">
           <div *ngIf="password.errors.required">
-            <p-message
-              severity="error"
-              text="Password es requerido"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="password-help" class="p-error"
+              >Contraseña requerida</small
+            >
           </div>
           <div *ngIf="password.errors.minlength">
-            <p-message
-              severity="error"
-              text="Password debe contener mínimo 6 caracteres"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="password-help" class="p-error"
+              >La contraseña debe contener mínimo 6 caracteres</small
+            >
           </div>
         </div>
       </div>
-      <div class="form-group p-m-3">
+      <div class="p-field p-m-3">
         <button pButton pRipple label="Registrar" icon="pi pi-sign-in"></button>
+        <p-button routerLink="../login" styleClass="p-button-link"
+          >Iniciar sesión</p-button
+        >
       </div>
       <div *ngIf="f.submitted && isSignUpFailed">
         <p-message

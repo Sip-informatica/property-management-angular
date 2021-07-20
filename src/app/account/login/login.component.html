@@ -1,6 +1,6 @@
 <div class="p-d-flex p-flex-wrap p-text-center card">
   <p-card
-    header="Iniciar Sesión"
+    header=""
     subheader=""
     [style]="{ width: '300px' }"
     styleClass="p-card-shadow"
@@ -34,12 +34,12 @@
             #username="ngModel"
           />
           <label for="float-input"
-            ><small>Nombre de usuario o email</small></label
+            ><small>Teléfono, correo o usuario</small></label
           >
         </span>
         <div class="p-mt-2" role="alert" *ngIf="username.errors && f.submitted">
           <small id="username-help" class="p-error"
-            >Nombre de usuario o email es requerido</small
+            >Requerido teléfono, correo o usuario</small
           >
         </div>
       </div>
@@ -56,25 +56,33 @@
         ></p-password>
         <div class="p-mt-2" role="alert" *ngIf="password.errors && f.submitted">
           <div *ngIf="password.errors.required">
-            <small id="password-help" class="p-error">Password requerido</small>
+            <small id="password-help" class="p-error"
+              >Contraseña requerida</small
+            >
           </div>
         </div>
       </div>
       <div class="p-field p-m-4">
-        <button pButton pRipple label="Login" icon="pi pi-user"></button>
+        <button
+          pButton
+          pRipple
+          label="Iniciar sesión"
+          icon="pi pi-user"
+        ></button>
         <p-button routerLink="../register" styleClass="p-button-link"
-          >Registrar</p-button
+          >Regístrate</p-button
         >
         <div class="p-field p-m-3">
-        <p-button routerLink="../forgot-password" styleClass="p-button-link"
-          ><small> Forgot Password?</small></p-button
-        ></div>
+          <p-button routerLink="../forgot-password" styleClass="p-button-link"
+            ><small>¿Olvidaste tu contraseña?</small></p-button
+          >
+        </div>
       </div>
       <div class="p-field">
         <div role="alert" *ngIf="f.submitted && isLoginFailed">
           <p-message
             severity="error"
-            text="Error de inicio de sesion"
+            text="Error de inicio de sesión"
             styleClass="p-m-1"
           ></p-message>
         </div>
