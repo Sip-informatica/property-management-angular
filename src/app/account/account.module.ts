@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+
 import { ButtonModule } from 'primeng/button';
 import { CardModule, } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
