@@ -1,19 +1,17 @@
-<div class="p-d-flex p-flex-wrap p-text-center">
+<div class="p-d-flex p-flex-wrap p-text-center card">
   <p-card
-    header="Iniciar Sesión"
+    header=""
     subheader=""
     [style]="{ width: '300px' }"
     styleClass="p-card-shadow"
   >
     <ng-template pTemplate="header">
-      <div>
-        <p-avatar
-          icon="pi pi-user"
-          styleClass="p-mr-2"
-          [style]="{ width: '300px' }"
-          size="xlarge"
-        ></p-avatar>
-      </div>
+      <p-avatar
+        icon="pi pi-user"
+        styleClass="p-mr-2"
+        [style]="{ width: '300px' }"
+        size="xlarge"
+      ></p-avatar>
     </ng-template>
     <form
       *ngIf="!isLoggedIn"
@@ -22,33 +20,34 @@
       #f="ngForm"
       novalidate
     >
-      <div class="form-group p-m-2">
-        <span class="p-float-label">
+      <div class="p-field p-m-3">
+        <span class="p-float-label p-m-2">
           <input
             id="float-input"
             type="text"
             name="username"
             pInputText
+            aria-describedby="username-help"
             [(ngModel)]="form.username"
             class="ng-dirty"
             required
             #username="ngModel"
-            [style]="{ width: '250px' }"
           />
-          <label for="float-input">Nombre de usuario o email</label>
+          <label for="float-input"
+            ><small>Teléfono, correo o usuario</small></label
+          >
         </span>
         <div class="p-mt-2" role="alert" *ngIf="username.errors && f.submitted">
-          <p-message
-            severity="error"
-            text="Nombre de usuario o email es requerido"
-            styleClass="p-m-2"
-          ></p-message>
+          <small id="username-help" class="p-error"
+            >Requerido teléfono, correo o usuario</small
+          >
         </div>
       </div>
-      <div class="form-group p-m-2">
+      <div class="p-field p-m-3">
         <p-password
           name="password"
           [(ngModel)]="form.password"
+          aria-describedby="password-help"
           required
           minlength="6"
           #password="ngModel"
@@ -57,22 +56,33 @@
         ></p-password>
         <div class="p-mt-2" role="alert" *ngIf="password.errors && f.submitted">
           <div *ngIf="password.errors.required">
-            <p-message
-              severity="error"
-              text="Password es requerido"
-              styleClass="p-m-2"
-            ></p-message>
+            <small id="password-help" class="p-error"
+              >Contraseña requerida</small
+            >
           </div>
         </div>
       </div>
-      <div class="form-group p-m-3">
-        <button pButton pRipple label="Login" icon="pi pi-user"></button>
+      <div class="p-field p-m-4">
+        <button
+          pButton
+          pRipple
+          label="Iniciar sesión"
+          icon="pi pi-user"
+        ></button>
+        <p-button routerLink="../register" styleClass="p-button-link"
+          >Regístrate</p-button
+        >
+        <div class="p-field p-m-3">
+          <p-button routerLink="../forgot-password" styleClass="p-button-link"
+            ><small>¿Olvidaste tu contraseña?</small></p-button
+          >
+        </div>
       </div>
-      <div class="form-group">
+      <div class="p-field">
         <div role="alert" *ngIf="f.submitted && isLoginFailed">
           <p-message
             severity="error"
-            text="Error de inicio de sesion"
+            text="Error de inicio de sesión"
             styleClass="p-m-1"
           ></p-message>
         </div>
