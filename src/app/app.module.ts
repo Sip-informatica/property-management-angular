@@ -10,7 +10,7 @@ import { BoardAdminComponent } from './property-management/board-admin/board-adm
 import { BoardManagementComponent } from './property-management/board-management/board-management.component';
 import { BoardUserComponent } from './property-management/board-user/board-user.component';
 
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { authInterceptorProviders } from './core/_helpers/auth.interceptor';
 import { MenubarComponent } from './shared/component/menubar/menubar.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
