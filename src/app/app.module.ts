@@ -12,9 +12,8 @@ import { BoardUserComponent } from './property-management/board-user/board-user.
 
 import { authInterceptorProviders } from './core/_helpers/auth.interceptor';
 import { MenubarComponent } from './shared/component/menubar/menubar.component';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { MenubarModule } from 'primeng/menubar';
+
+import { NgPrimeModule } from './ng-prime.module';
 
 @NgModule({
   declarations: [
@@ -30,9 +29,7 @@ import { MenubarModule } from 'primeng/menubar';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MenubarModule,
-    InputTextModule,
-    ButtonModule
+    NgPrimeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
