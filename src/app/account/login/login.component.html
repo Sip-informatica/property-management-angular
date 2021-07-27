@@ -62,7 +62,7 @@
           </div>
         </div>
       </div>
-      <div class="p-field p-m-4">
+      <div class="p-field p-m-4"  *ngIf="!isLoggedIn">
         <button
           pButton
           pRipple
@@ -88,14 +88,19 @@
         </div>
       </div>
     </form>
-    <div class="p-mt-2">
-      <div *ngIf="isLoggedIn">
+    <div class="p-mt-2" *ngIf="isLoggedIn">
+        <button
+        pButton
+        pRipple
+        label="Cerrar sesión"
+        icon="pi pi-user"
+        (click)="logout()"
+      ></button>
         <p-message
           severity="info"
           text="Conectado como:  {{ roles }}"
-          styleClass="p-m-2"
+          styleClass="p-m-4"
         ></p-message>
-      </div>
     </div>
   </p-card>
 </div>
