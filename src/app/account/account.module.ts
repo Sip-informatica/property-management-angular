@@ -6,7 +6,8 @@ import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { NgPrimeModule } from 'app/ng-prime.module';
+import { SharedModule } from 'app/shared/shared.module';
+
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { NgPrimeModule } from 'app/ng-prime.module';
     CommonModule,
     AccountRoutingModule,
     FormsModule,
-    NgPrimeModule,
+    SharedModule
   ]
 })
 export class AccountModule { }
