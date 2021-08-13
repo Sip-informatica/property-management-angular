@@ -24,6 +24,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./account/account.module').then((m) => m.AccountModule),
   },
+  {
+    path: 'board-admin',
+    loadChildren: () =>
+      import('./property-management/board-admin/boaradmin.module').then(
+        (m) => m.BoaradminModule
+      ),
+  },
 ];
 
 @NgModule({

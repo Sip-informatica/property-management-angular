@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrimengModule } from './primeng.module';
 import { FormsModule } from '@angular/forms';
+import { MenubarComponent } from './component/menubar/menubar.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    MenubarComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -13,7 +16,8 @@ import { FormsModule } from '@angular/forms';
 
   ],
   exports: [
-    PrimengModule
+    PrimengModule,
+    MenubarComponent
   ]
 })
 export class SharedModule { }

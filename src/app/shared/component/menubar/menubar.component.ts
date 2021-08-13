@@ -69,8 +69,9 @@ export class MenubarComponent implements OnInit {
         icon: 'pi pi-fw pi-user',
         items: [
           {
-            label: 'New',
-            icon: 'pi pi-fw pi-user-plus',
+            label: 'Board Admin',
+            icon: 'pi pi-fw pi-user',
+            routerLink: ['/board-admin'],
           },
           {
             label: 'Delete',
