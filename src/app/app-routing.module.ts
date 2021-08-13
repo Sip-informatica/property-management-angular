@@ -18,11 +18,18 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'management', component: BoardManagementComponent },
   { path: 'admin', component: BoardAdminComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'account/login', pathMatch: 'full' },
   {
     path: 'account',
     loadChildren: () =>
       import('./account/account.module').then((m) => m.AccountModule),
+  },
+  {
+    path: 'board-admin',
+    loadChildren: () =>
+      import('./property-management/board-admin/boaradmin.module').then(
+        (m) => m.BoaradminModule
+      ),
   },
 ];
 
