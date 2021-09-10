@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import {environment} from '@env';
+import { User } from '@core/_models/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,8 +13,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+  private accountSubject: BehaviorSubject<User>;
+  public account: Observable<User>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.accountSubject = new BehaviorSubject<User>(new User());
+    this.account = this.accountSubject.asObservable();
+   }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(environment.AUTH_API + 'signin', {
@@ -29,5 +35,9 @@ export class AuthService {
       email,
       password
     }, httpOptions);
+  }
+
+  public get accountValue(): User {
+    return this.accountSubject.value;
   }
 }
