@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { environment } from '@env';
-import { User } from '@core/_models/user.model';
 import { Router } from '@angular/router';
 
 const httpOptions = {
@@ -19,7 +18,7 @@ export class UserService {
       }
 
   getProducts(): Observable<any> {
-    return this.http.get<User[]>(environment.AUTH_API + 'users-admin');
+    return this.http.get(environment.AUTH_API + 'users-admin', httpOptions);
   }
 
   getPublicContent(): Observable<any> {
