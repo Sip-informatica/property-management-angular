@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import {environment} from '@env';
 import { User } from '@core/_models/user.model';
+import { UserService } from './user.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,9 +16,10 @@ const httpOptions = {
 export class AuthService {
   private accountSubject: BehaviorSubject<User>;
   public account: Observable<User>;
+  user!: User;
 
   constructor(private http: HttpClient) {
-    this.accountSubject = new BehaviorSubject<User>(new User());
+    this.accountSubject = new BehaviorSubject<User>(this.user);
     this.account = this.accountSubject.asObservable();
    }
 

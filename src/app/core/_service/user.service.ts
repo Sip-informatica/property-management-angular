@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '@env';
 import { Router } from '@angular/router';
+import { User } from '@core/_models/user.model';
 
 const httpOptions = {
   responseType: 'text' as const,
@@ -18,7 +19,7 @@ export class UserService {
       }
 
   getProducts(): Observable<any> {
-    return this.http.get(environment.AUTH_API + 'users-admin', httpOptions);
+    return this.http.get(environment.AUTH_API + 'users-admin');
   }
 
   getPublicContent(): Observable<any> {

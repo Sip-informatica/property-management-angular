@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '@core/_models/user.model';
 import { UserService } from '@core/_service/user.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-board-admin',
@@ -8,17 +10,17 @@ import { UserService } from '@core/_service/user.service';
 })
 export class BoardAdminComponent implements OnInit {
 
-  content?: string;
+  products: User[] = [];
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getProducts().subscribe(
       data => {
-        this.content = data;
+        this.products = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.products = JSON.parse(err.error).message;
       }
     );
   }
