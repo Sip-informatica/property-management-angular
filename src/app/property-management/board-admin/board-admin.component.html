@@ -1,6 +1,18 @@
-<div class="container">
-  <header class="jumbotron">
-    Board Admin
-    <p>{{ content }}</p>
-  </header>
-</div>
+<p-table [value]="products">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Email</th>
+          <th>Enabled</th>
+          <th>Password</th>
+          <th>Roles</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td>{{product.email}}</td>
+          <td>{{product.isEnabled}}</td>
+          <td>{{product.password}}</td>
+          <td>{{product.roles}}</td>
+      </tr>
+  </ng-template>
+</p-table>
