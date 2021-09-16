@@ -25,24 +25,21 @@
 
   <p-table
     #dt
+    [columns]="cols"
     [value]="products"
+    styleClass="p-datatable-striped p-datatable-sm"
     responsiveLayout="scroll"
-    styleClass="p-datatable-sm p-datatable-striped"
     [rowHover]="true"
-    [globalFilterFields]="[
-      'email',
-      'isEnabled',
-      'roles'
-    ]"
+    [globalFilterFields]="columnsToDisplay"
     [(selection)]="selectedProducts"
     dataKey="email"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [showCurrentPageReport]="true"
     [loading]="loading"
-    >
+  >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
-        <h5 class="p-m-0">Gestión de usuarios</h5>
+        <h4 class="p-m-0">{{ecaption}}</h4>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input
@@ -54,26 +51,26 @@
         </span>
       </div>
     </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
+    <ng-template pTemplate="header" let-columns>
+      <tr class="p-text-capitalize">
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-        <th pSortableColumn="roles">Roles <p-sortIcon field="roles"></p-sortIcon></th>
-        <th>Password</th>
-        <th pSortableColumn="enabled">Enabled <p-sortIcon field="enabled"></p-sortIcon></th>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.header">
+          {{ col.header }}
+          <p-sortIcon field="col.header"></p-sortIcon>
+        </th>
+        <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td>
-          <p-tableCheckbox [value]="product"></p-tableCheckbox>
+          <p-tableCheckbox [value]="columns"></p-tableCheckbox>
         </td>
-        <td>{{ product.email }}</td>
-        <td>{{ product.roles }}</td>
-        <td>{{ product.password }}</td>
-        <td>{{ product.isEnabled }}</td>
+        <td *ngFor="let col of columns">
+          {{ rowData[col.field] }}
+        </td>
         <td>
           <button
             pButton
@@ -92,7 +89,7 @@
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="p-d-flex p-ai-center p-jc-between">
-       En total hay, {{ products ? products.length : 0 }} Usuarios.
+        En total hay, {{ products ? products.length : 0 }} Usuarios.
       </div>
     </ng-template>
   </p-table>

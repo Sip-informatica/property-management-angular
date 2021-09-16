@@ -14,7 +14,11 @@ export class BoardAdminComponent implements OnInit {
   selectedProducts: User[] = [];
   submitted!: boolean;
   productDialog!: boolean;
-  loading: boolean = true;
+  loading = true;
+  ecaption = "Gestión de usuarios";
+
+  cols: any[] = [];
+  columnsToDisplay: string[] = [];
 
   constructor(
     private userService: UserService,
@@ -28,6 +32,9 @@ export class BoardAdminComponent implements OnInit {
       (data) => {
         this.products = data;
         this.loading = false;
+        this.updateColumns();
+        console.log(this.cols);
+        console.log(this.columnsToDisplay);
       },
       (err) => {
         this.products = JSON.parse(err.error).message;
@@ -48,4 +55,12 @@ export class BoardAdminComponent implements OnInit {
   getEventValue($event: any): string {
     return $event.target.value;
   }
+  updateColumns(): void {
+    this.cols = Object.keys(this.products[0]).map(key => ({
+      field: key,
+      header: key
+    }));
+    this.columnsToDisplay = this.cols.map(col => col.field);
+  }
+
 }
