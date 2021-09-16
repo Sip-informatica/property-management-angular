@@ -31,6 +31,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
       ConfirmDialogModule,
       InputTextareaModule,
       TableModule,
-  ]
+  ],
+  providers: [MessageService, ConfirmationService]
 })
 export class PrimengModule { }
