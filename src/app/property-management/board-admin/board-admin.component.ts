@@ -15,7 +15,7 @@ export class BoardAdminComponent implements OnInit {
   submitted!: boolean;
   productDialog!: boolean;
   loading = true;
-  ecaption = "Gestión de usuarios";
+  ecaption = 'Gestión de usuarios';
 
   cols: any[] = [];
   columnsToDisplay: string[] = [];
