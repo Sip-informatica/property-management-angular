@@ -7,6 +7,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardManagementComponent } from './board-management/board-management.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { PropertyManagementComponent } from './property-management.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { PropertyManagementComponent } from './property-management.component';
   imports: [
     CommonModule,
     AccountRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class PropertyManagementModule { }

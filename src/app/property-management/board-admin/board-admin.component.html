@@ -25,7 +25,7 @@
 
   <p-table
     #dt
-    [columns]="cols"
+    [columns]="selectedColumns"
     [value]="products"
     styleClass="p-datatable-striped p-datatable-sm"
     responsiveLayout="scroll"
@@ -39,6 +39,15 @@
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
+        <p-multiSelect
+          [options]="cols"
+          [(ngModel)]="selectedColumns"
+          optionLabel="header"
+          selectedItemsLabel="{0} columnas seleccionadas"
+          [style]="{ minWidth: '200px' }"
+          placeholder="Elegir columnas"
+          class="p-text-capitalize"
+        ></p-multiSelect>
         <h4 class="p-m-0">{{ ecaption }}</h4>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
@@ -63,10 +72,10 @@
         <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-product>
       <tr>
         <td>
-          <p-tableCheckbox [value]="columns"></p-tableCheckbox>
+          <p-tableCheckbox [value]="product"></p-tableCheckbox>
         </td>
         <td *ngFor="let col of columns">
           {{ rowData[col.field] }}
