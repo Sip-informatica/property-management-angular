@@ -33,8 +33,6 @@ export class BoardAdminComponent implements OnInit {
         this.products = data;
         this.loading = false;
         this.updateColumns();
-        console.log(this.cols);
-        console.log(this.columnsToDisplay);
       },
       (err) => {
         this.products = JSON.parse(err.error).message;
