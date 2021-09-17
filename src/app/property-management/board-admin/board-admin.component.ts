@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from '@core/_models/user.model';
 import { UserService } from '@core/_service/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -15,10 +15,11 @@ export class BoardAdminComponent implements OnInit {
   submitted!: boolean;
   productDialog!: boolean;
   loading = true;
-  ecaption = "Gestión de usuarios";
+  ecaption = 'Gestión de usuarios';
 
   cols: any[] = [];
   columnsToDisplay: string[] = [];
+  private _selectedColumns: any[] = [];
 
   constructor(
     private userService: UserService,
@@ -33,14 +34,22 @@ export class BoardAdminComponent implements OnInit {
         this.products = data;
         this.loading = false;
         this.updateColumns();
-        console.log(this.cols);
-        console.log(this.columnsToDisplay);
+        this._selectedColumns = this.cols;
       },
       (err) => {
         this.products = JSON.parse(err.error).message;
       }
     );
   }
+
+  @Input() get selectedColumns(): any[] {
+    return this._selectedColumns;
+  }
+
+  set selectedColumns(val: any[]) {
+    this._selectedColumns = this.cols.filter((col) => val.includes(col));
+  }
+
   openNew(): void {
     this.product = {};
     this.submitted = false;
@@ -56,11 +65,10 @@ export class BoardAdminComponent implements OnInit {
     return $event.target.value;
   }
   updateColumns(): void {
-    this.cols = Object.keys(this.products[0]).map(key => ({
+    this.cols = Object.keys(this.products[0]).map((key) => ({
       field: key,
-      header: key
+      header: key,
     }));
-    this.columnsToDisplay = this.cols.map(col => col.field);
+    this.columnsToDisplay = this.cols.map((col) => col.field);
   }
-
 }
