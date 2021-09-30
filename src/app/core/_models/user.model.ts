@@ -6,7 +6,8 @@ export interface User {
   email?: string;
   username?: string;
   phone?: string;
-  role?: Role;
+  password?: string;
+  role?: Role[];
   jwtToken?: string;
   isAccountNonExpired?: boolean;
   isAccountNonLocked?: boolean;
