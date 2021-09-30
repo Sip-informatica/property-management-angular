@@ -103,3 +103,402 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-dialog
+  [(visible)]="productDialog"
+  [style]="{ width: '450px' }"
+  header="Detalles del usuario"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="username"
+            pInputText
+            aria-describedby="username-help"
+            [(ngModel)]="userDialog.username"
+            class="ng-dirty"
+            required
+            minlength="3"
+            maxlength="20"
+            #username="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>Nombre de Usuario</small></label>
+        </span>
+        <div *ngIf="username.errors && submitted">
+          <div *ngIf="username.errors.required">
+            <small id="username-help" class="p-error"
+              >Requerido nombre de usuario</small
+            >
+          </div>
+          <div *ngIf="username.errors.minlength">
+            <small id="username-help" class="p-error"
+              >El nombre de usuario debe tener al menos 3 caracteres</small
+            >
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            <small id="username-help" class="p-error"
+              >El nombre de usuario no debe superar los 20 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="email"
+            type="email"
+            class="ng-dirty"
+            name="email"
+            pInputText
+            aria-describedby="email-help"
+            [(ngModel)]="userDialog.email"
+            required
+            email
+            #email="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="email"><small>Correo electrónico</small></label>
+        </span>
+        <div *ngIf="email.errors && submitted">
+          <div *ngIf="email.errors.required">
+            <small id="email-help" class="p-error"
+              >Correo electrónico requerido</small
+            >
+          </div>
+          <div *ngIf="email.errors.email">
+            <small id="email-help" class="p-error"
+              >El correo electrónico debe tener una dirección valida</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-m-3">
+        <p-password
+          name="password"
+          [(ngModel)]="userDialog.password"
+          aria-describedby="password-help"
+          required
+          minlength="6"
+          #password="ngModel"
+          [toggleMask]="true"
+          promptLabel="Elige una contraseña"
+          [style]="{ width: '280px' }"
+        >
+          <ng-template pTemplate="header">
+            <p class="p-mt-2">Sugerencias</p>
+            <ul
+              class="p-pl-2 p-ml-2 p-mt-0 p-text-left"
+              style="line-height: 1.5"
+            >
+              <li>Al menos una minúscula</li>
+              <li>Al menos una mayúscula</li>
+              <li>Al menos un número</li>
+              <li>Mínimo 6 caracteres</li>
+            </ul>
+            <p-divider></p-divider>
+          </ng-template>
+        </p-password>
+        <div class="alert-danger" *ngIf="password.errors && submitted">
+          <div *ngIf="password.errors.required">
+            <small id="password-help" class="p-error"
+              >Contraseña requerida</small
+            >
+          </div>
+          <div *ngIf="password.errors.minlength">
+            <small id="password-help" class="p-error"
+              >La contraseña debe contener mínimo 6 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="phone"
+            pInputText
+            aria-describedby="phone-help"
+            [(ngModel)]="userDialog.phone"
+            class="ng-dirty"
+            required
+            minlength="9"
+            maxlength="20"
+            #phone="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>Teléfono Móvil</small></label>
+        </span>
+        <div *ngIf="phone.errors && submitted">
+          <div *ngIf="phone.errors.required">
+            <small id="phone-help" class="p-error"
+              >Requerido Teléfono Móvil</small
+            >
+          </div>
+          <div *ngIf="phone.errors.minlength">
+            <small id="phone-help" class="p-error"
+              >El Teléfono Móvil debe tener al menos 9 caracteres</small
+            >
+          </div>
+          <div *ngIf="phone.errors.maxlength">
+            <small id="phone-help" class="p-error"
+              >El Teléfono Móvil no debe superar los 20 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="dni"
+            pInputText
+            aria-describedby="dni-help"
+            [(ngModel)]="userDialog.dni"
+            class="ng-dirty"
+            required
+            minlength="9"
+            maxlength="20"
+            #dni="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>DNI</small></label>
+        </span>
+        <div *ngIf="dni.errors && submitted">
+          <div *ngIf="dni.errors.required">
+            <small id="dni-help" class="p-error">Requerido DNI</small>
+          </div>
+          <div *ngIf="dni.errors.minlength">
+            <small id="dni-help" class="p-error"
+              >El DNI debe tener al menos 9 caracteres</small
+            >
+          </div>
+          <div *ngIf="dni.errors.maxlength">
+            <small id="phone-help" class="p-error"
+              >El DNI no debe superar los 20 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-m-3">
+        <span class="p-float-label">
+          <p-multiSelect
+            inputId="multiselectRole"
+            [options]="roles"
+            [(ngModel)]="userDialog.role"
+            optionLabel=""
+            [filter]="false"
+            [style]="{ width: '280px' }"
+          ></p-multiSelect>
+          <label for="multiselectRole"><small>Roles</small></label>
+        </span>
+      </div>
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="firstName"
+            pInputText
+            aria-describedby="firstName-help"
+            [(ngModel)]="userDialog.firstName"
+            class="ng-dirty"
+            maxlength="20"
+            #firstName="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>Nombre</small></label>
+        </span>
+        <div *ngIf="firstName.errors && submitted">
+          <div *ngIf="firstName.errors.maxlength">
+            <small id="firstName-help" class="p-error"
+              >El Nombre no debe superar los 20 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="lastName"
+            pInputText
+            aria-describedby="lastName-help"
+            [(ngModel)]="userDialog.lastName"
+            class="ng-dirty"
+            maxlength="20"
+            #lastName="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>Apellidos</small></label>
+        </span>
+        <div *ngIf="lastName.errors && submitted">
+          <div *ngIf="lastName.errors.maxlength">
+            <small id="lastName-help" class="p-error"
+              >Los Apellidos no debe superar los 20 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="address"
+            pInputText
+            aria-describedby="address-help"
+            [(ngModel)]="userDialog.address"
+            class="ng-dirty"
+            maxlength="40"
+            #address="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>Dirección</small></label>
+        </span>
+        <div *ngIf="address.errors && submitted">
+          <div *ngIf="address.errors.maxlength">
+            <small id="address-help" class="p-error"
+              >La Dirección no debe superar los 40 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="city"
+            pInputText
+            aria-describedby="city-help"
+            [(ngModel)]="userDialog.city"
+            class="ng-dirty"
+            maxlength="20"
+            #city="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>Ciudad</small></label>
+        </span>
+        <div *ngIf="city.errors && submitted">
+          <div *ngIf="city.errors.maxlength">
+            <small id="city-help" class="p-error"
+              >La Dirección no debe superar los 20 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-m-2">
+        <span class="p-float-label p-m-2">
+          <input
+            id="float-input"
+            type="text"
+            name="country"
+            pInputText
+            aria-describedby="country-help"
+            [(ngModel)]="userDialog.country"
+            class="ng-dirty"
+            maxlength="20"
+            #country="ngModel"
+            [style]="{ width: '280px' }"
+          />
+          <label for="float-input"><small>Pais</small></label>
+        </span>
+        <div *ngIf="country.errors && submitted">
+          <div *ngIf="country.errors.maxlength">
+            <small id="country-help" class="p-error"
+              >El Pais no debe superar los 20 caracteres</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-field-checkbox p-m-3">
+        <p-checkbox
+          [(ngModel)]="userDialog.isAccountNonExpired"
+          [binary]="true"
+          [value]="userDialog.isAccountNonExpired"
+          inputId="isAccountNonExpired"
+        ></p-checkbox>
+        <label for="isAccountNonExpired">
+          <small
+            >La cuenta no ha caducado -
+            {{ userDialog.isAccountNonExpired }}</small
+          ></label
+        >
+      </div>
+      <div class="p-field-checkbox p-m-3">
+        <p-checkbox
+          [(ngModel)]="userDialog.isAccountNonLocked"
+          [binary]="true"
+          [value]="userDialog.isAccountNonLocked"
+          inputId="isAccountNonLocked"
+        ></p-checkbox>
+        <label for="isAccountNonLocked">
+          <small
+            >La cuenta no está bloqueada -
+            {{ userDialog.isAccountNonLocked }}</small
+          ></label
+        >
+      </div>
+      <div class="p-field-checkbox p-m-3">
+        <p-checkbox
+          [(ngModel)]="userDialog.isCredentialsNonExpired"
+          [binary]="true"
+          [value]="userDialog.isCredentialsNonExpired"
+          inputId="isCredentialsNonExpired"
+        ></p-checkbox>
+        <label for="isCredentialsNonExpired">
+          <small
+            >Los credenciales no han caducado -
+            {{ userDialog.isCredentialsNonExpired }}</small
+          ></label
+        >
+      </div>
+      <div class="p-field-checkbox p-m-3">
+        <p-checkbox
+          [(ngModel)]="userDialog.isEnabled"
+          [binary]="true"
+          [value]="userDialog.isEnabled"
+          inputId="isEnabled"
+        ></p-checkbox>
+        <label for="isEnabled">
+          <small
+            >La cuenta está habilitada - {{ userDialog.isEnabled }}</small
+          ></label
+        >
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

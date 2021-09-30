@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Role } from '@core/_models/role.enum';
 import { User } from '@core/_models/user.model';
+import { UserClass } from '@core/_models/userClass.model';
 import { UserService } from '@core/_service/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -9,17 +11,20 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrls: ['./board-admin.component.css'],
 })
 export class BoardAdminComponent implements OnInit {
-  products: User[] = [];
-  product!: User;
-  selectedProducts: User[] = [];
-  submitted!: boolean;
-  productDialog!: boolean;
   loading = true;
   ecaption = 'Gestión de usuarios';
 
+  products: User[] = [];
+  product!: User;
+  selectedProducts: User[] = [];
   cols: any[] = [];
   columnsToDisplay: string[] = [];
   private _selectedColumns: any[] = [];
+
+  userDialog: UserClass = new UserClass();
+  submitted!: boolean;
+  productDialog!: boolean;
+  roles: Role[] = [];
 
   constructor(
     private userService: UserService,
@@ -35,6 +40,13 @@ export class BoardAdminComponent implements OnInit {
         this.loading = false;
         this.updateColumns();
         this._selectedColumns = this.cols;
+        this.roles = [
+          Role.Admin,
+          Role.Manager,
+          Role.Operator,
+          Role.Customer,
+          Role.Authenticated,
+        ];
       },
       (err) => {
         this.products = JSON.parse(err.error).message;
@@ -55,7 +67,14 @@ export class BoardAdminComponent implements OnInit {
     this.submitted = false;
     this.productDialog = true;
   }
+
   deleteSelectedProducts(): void {}
+  saveProduct(): void {
+    this.submitted = true;
+    this.userService.createProduct(this.userDialog);
+    this.productDialog = false;
+    this.product = {};
+  }
 
   hideDialog(): void {
     this.productDialog = false;
