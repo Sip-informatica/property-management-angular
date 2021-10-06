@@ -124,6 +124,7 @@
             [(ngModel)]="userDialog.username"
             class="ng-dirty"
             required
+            autofocus
             minlength="3"
             maxlength="20"
             #username="ngModel"
@@ -131,7 +132,7 @@
           />
           <label for="float-input"><small>Nombre de Usuario</small></label>
         </span>
-        <div *ngIf="username.errors && submitted">
+        <div *ngIf="username.errors && submitted" class="p-m-2">
           <div *ngIf="username.errors.required">
             <small id="username-help" class="p-error"
               >Requerido nombre de usuario</small
@@ -167,7 +168,7 @@
           />
           <label for="email"><small>Correo electrónico</small></label>
         </span>
-        <div *ngIf="email.errors && submitted">
+        <div *ngIf="email.errors && submitted" class="p-m-2">
           <div *ngIf="email.errors.required">
             <small id="email-help" class="p-error"
               >Correo electrónico requerido</small
@@ -187,21 +188,22 @@
           aria-describedby="password-help"
           required
           minlength="6"
+          maxlength="35"
           #password="ngModel"
           [toggleMask]="true"
           promptLabel="Elige una contraseña"
           [style]="{ width: '280px' }"
         >
           <ng-template pTemplate="header">
-            <p class="p-mt-2">Sugerencias</p>
+            <p class="p-mt-2"><small>Sugerencias</small></p>
             <ul
               class="p-pl-2 p-ml-2 p-mt-0 p-text-left"
               style="line-height: 1.5"
             >
-              <li>Al menos una minúscula</li>
-              <li>Al menos una mayúscula</li>
-              <li>Al menos un número</li>
-              <li>Mínimo 6 caracteres</li>
+              <li><small>Al menos una minúscula</small></li>
+              <li><small>Al menos una mayúscula</small></li>
+              <li><small>Al menos un número</small></li>
+              <li><small>Mínimo 6 caracteres</small></li>
             </ul>
             <p-divider></p-divider>
           </ng-template>
@@ -238,7 +240,7 @@
           />
           <label for="float-input"><small>Teléfono Móvil</small></label>
         </span>
-        <div *ngIf="phone.errors && submitted">
+        <div *ngIf="phone.errors && submitted" class="p-m-2">
           <div *ngIf="phone.errors.required">
             <small id="phone-help" class="p-error"
               >Requerido Teléfono Móvil</small
@@ -274,7 +276,7 @@
           />
           <label for="float-input"><small>DNI</small></label>
         </span>
-        <div *ngIf="dni.errors && submitted">
+        <div *ngIf="dni.errors && submitted" class="p-m-2">
           <div *ngIf="dni.errors.required">
             <small id="dni-help" class="p-error">Requerido DNI</small>
           </div>
@@ -295,7 +297,7 @@
           <p-multiSelect
             inputId="multiselectRole"
             [options]="roles"
-            [(ngModel)]="userDialog.role"
+            [(ngModel)]="userDialog.roles"
             optionLabel=""
             [filter]="false"
             [style]="{ width: '280px' }"
@@ -319,7 +321,7 @@
           />
           <label for="float-input"><small>Nombre</small></label>
         </span>
-        <div *ngIf="firstName.errors && submitted">
+        <div *ngIf="firstName.errors && submitted" class="p-m-2">
           <div *ngIf="firstName.errors.maxlength">
             <small id="firstName-help" class="p-error"
               >El Nombre no debe superar los 20 caracteres</small
@@ -343,7 +345,7 @@
           />
           <label for="float-input"><small>Apellidos</small></label>
         </span>
-        <div *ngIf="lastName.errors && submitted">
+        <div *ngIf="lastName.errors && submitted" class="p-m-2">
           <div *ngIf="lastName.errors.maxlength">
             <small id="lastName-help" class="p-error"
               >Los Apellidos no debe superar los 20 caracteres</small
@@ -367,7 +369,7 @@
           />
           <label for="float-input"><small>Dirección</small></label>
         </span>
-        <div *ngIf="address.errors && submitted">
+        <div *ngIf="address.errors && submitted" class="p-m-2">
           <div *ngIf="address.errors.maxlength">
             <small id="address-help" class="p-error"
               >La Dirección no debe superar los 40 caracteres</small
@@ -391,7 +393,7 @@
           />
           <label for="float-input"><small>Ciudad</small></label>
         </span>
-        <div *ngIf="city.errors && submitted">
+        <div *ngIf="city.errors && submitted" class="p-m-2">
           <div *ngIf="city.errors.maxlength">
             <small id="city-help" class="p-error"
               >La Dirección no debe superar los 20 caracteres</small
@@ -415,7 +417,7 @@
           />
           <label for="float-input"><small>Pais</small></label>
         </span>
-        <div *ngIf="country.errors && submitted">
+        <div *ngIf="country.errors && submitted" class="p-m-2">
           <div *ngIf="country.errors.maxlength">
             <small id="country-help" class="p-error"
               >El Pais no debe superar los 20 caracteres</small
@@ -431,10 +433,7 @@
           inputId="isAccountNonExpired"
         ></p-checkbox>
         <label for="isAccountNonExpired">
-          <small
-            >La cuenta no ha caducado -
-            {{ userDialog.isAccountNonExpired }}</small
-          ></label
+          <small>La cuenta no ha caducado</small></label
         >
       </div>
       <div class="p-field-checkbox p-m-3">
@@ -445,10 +444,7 @@
           inputId="isAccountNonLocked"
         ></p-checkbox>
         <label for="isAccountNonLocked">
-          <small
-            >La cuenta no está bloqueada -
-            {{ userDialog.isAccountNonLocked }}</small
-          ></label
+          <small>La cuenta no está bloqueada</small></label
         >
       </div>
       <div class="p-field-checkbox p-m-3">
@@ -459,10 +455,7 @@
           inputId="isCredentialsNonExpired"
         ></p-checkbox>
         <label for="isCredentialsNonExpired">
-          <small
-            >Los credenciales no han caducado -
-            {{ userDialog.isCredentialsNonExpired }}</small
-          ></label
+          <small>Los credenciales no han caducado</small></label
         >
       </div>
       <div class="p-field-checkbox p-m-3">
@@ -472,11 +465,7 @@
           [value]="userDialog.isEnabled"
           inputId="isEnabled"
         ></p-checkbox>
-        <label for="isEnabled">
-          <small
-            >La cuenta está habilitada - {{ userDialog.isEnabled }}</small
-          ></label
-        >
+        <label for="isEnabled"> <small>La cuenta está habilitada</small></label>
       </div>
     </div>
   </ng-template>

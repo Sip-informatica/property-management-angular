@@ -8,7 +8,7 @@ export class UserClass implements User {
   username?: string;
   phone?: string;
   password?: string;
-  role?: Role[];
+  roles?: Role[];
   jwtToken?: string;
   isAccountNonExpired?: boolean;
   isAccountNonLocked?: boolean;
@@ -27,7 +27,7 @@ export class UserClass implements User {
     this.username = '';
     this.phone = '';
     this.password = '';
-    this.role = [Role.Manager];
+    this.roles = [Role.Manager];
     this.dni = '';
     this.isAccountNonExpired = true;
     this.isAccountNonLocked = true;

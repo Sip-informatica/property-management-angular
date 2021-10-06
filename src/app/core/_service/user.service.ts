@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 import { environment } from '@env';
 import { Router } from '@angular/router';
@@ -14,14 +15,15 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-  createProduct(user: User): void {
+  createProduct(user: User): Observable<any> {
     console.log(user);
+    return this.http.post(environment.ADMIM_API + 'users-admin', user);
   }
 
   constructor(private router: Router, private http: HttpClient) {}
 
   getProducts(): Observable<any> {
-    return this.http.get(environment.AUTH_API + 'users-admin');
+    return this.http.get(environment.ADMIM_API + 'users-admin');
   }
 
   getPublicContent(): Observable<any> {
