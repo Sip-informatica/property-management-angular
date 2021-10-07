@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   AUTH_API: 'https://sip-property-management.herokuapp.com/api/auth/',
   API_URL_TEST: 'https://sip-property-management.herokuapp.com/api/test/',
-  ADMIM_API: 'https://sip-property-management.herokuapp.com/api/admin/'
+  ADMIN_API: 'https://sip-property-management.herokuapp.com/api/admin/'
 };
 
 /*
