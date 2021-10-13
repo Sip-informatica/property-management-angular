@@ -57,10 +57,7 @@ export class BoardAdminComponent implements OnInit {
           severity: 'error',
           summary: 'Error',
           detail:
-            'Error: ' +
-            mistake.error.errors +
-            ' - ' +
-            mistake.error.message,
+            'Error: ' + mistake.error.errors + ' - ' + mistake.error.message,
           life: 4000,
         });
       }
@@ -81,7 +78,6 @@ export class BoardAdminComponent implements OnInit {
     this.productDialog = true;
   }
 
-  deleteSelectedProducts(): void {}
   saveProduct(): void {
     this.submitted = true;
     if (
@@ -99,7 +95,7 @@ export class BoardAdminComponent implements OnInit {
             console.log(data);
             this.messageService.add({
               severity: 'success',
-              summary: 'Exitoso',
+              summary: 'Correcto',
               detail: 'Usuario Creado - ' + data.message,
               life: 4000,
             });
@@ -121,6 +117,85 @@ export class BoardAdminComponent implements OnInit {
       this.productDialog = false;
       this.userDialog = new UserClass();
     }
+  }
+
+  deleteSelectedProducts(): void {
+    this.confirmationService.confirm({
+      message: '¿Estás seguro que quieres eliminar los usuarios seleccionados?',
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        console.log(this.selectedProducts);
+        this.selectedProducts.forEach((user) => {
+          this.userService
+            .deleteProduct(user.email)
+            .pipe(first())
+            .subscribe(
+              (data) => {
+                console.log(data);
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Correcto',
+                  detail: 'Usuario Eliminado - ' + data.message,
+                  life: 4000,
+                });
+                this.ngOnInit();
+              },
+              (mistake) => {
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail:
+                    'Usuario no Eliminado - ' +
+                    mistake.error.errors +
+                    ' - ' +
+                    mistake.error.message,
+                  life: 4000,
+                });
+              }
+            );
+        });
+        this.selectedProducts = [];
+      },
+    });
+  }
+
+  deleteProduct(product: User): void {
+    this.confirmationService.confirm({
+      message: '¿Estás seguro que quieres eliminar, ' + product.username + '?',
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.userService
+          .deleteProduct(product.email)
+          .pipe(first())
+          .subscribe(
+            (data) => {
+              console.log(data);
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Correcto',
+                detail: 'Usuario Eliminado - ' + data.message,
+                life: 4000,
+              });
+              this.ngOnInit();
+            },
+            (mistake) => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail:
+                  'Usuario no Eliminado - ' +
+                  mistake.error.errors +
+                  ' - ' +
+                  mistake.error.message,
+                life: 4000,
+              });
+            }
+          );
+        this.selectedProducts = [];
+      },
+    });
   }
 
   hideDialog(): void {

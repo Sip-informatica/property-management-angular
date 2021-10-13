@@ -15,6 +15,10 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
+  deleteProduct(userEmail?: string): Observable<any> {
+    console.log(userEmail);
+    return this.http.delete(environment.ADMIN_API + 'users-admin/email/' + userEmail);
+  }
   createProduct(user: User): Observable<any> {
     console.log(user);
     return this.http.post(environment.ADMIN_API + 'users-admin', user);
