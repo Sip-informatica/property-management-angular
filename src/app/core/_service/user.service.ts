@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '@env';
 import { Router } from '@angular/router';
@@ -16,11 +16,11 @@ const httpOptions = {
 })
 export class UserService {
   deleteProduct(userEmail?: string): Observable<any> {
-    console.log(userEmail);
-    return this.http.delete(environment.ADMIN_API + 'users-admin/email/' + userEmail);
+    return this.http.delete(
+      environment.ADMIN_API + 'users-admin/email/' + userEmail
+    );
   }
   createProduct(user: User): Observable<any> {
-    console.log(user);
     return this.http.post(environment.ADMIN_API + 'users-admin', user);
   }
 
@@ -28,6 +28,10 @@ export class UserService {
 
   getProducts(): Observable<any> {
     return this.http.get(environment.ADMIN_API + 'users-admin');
+  }
+
+  updateProduct(user: User, userEmail?: string): Observable<any> {
+    return this.http.put(environment.ADMIN_API + 'users-admin/email/' + userEmail, user);
   }
 
   getPublicContent(): Observable<any> {
