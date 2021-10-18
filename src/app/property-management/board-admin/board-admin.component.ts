@@ -27,6 +27,8 @@ export class BoardAdminComponent implements OnInit {
   submitted!: boolean;
   productDialog!: boolean;
   roles: Role[] = [];
+  isCreate = false;
+  isUpdate = false;
 
   constructor(
     private userService: UserService,
@@ -45,10 +47,10 @@ export class BoardAdminComponent implements OnInit {
         this.updateColumns();
         this._selectedColumns = this.cols.filter(
           (col) =>
-            col.field == 'phone' ||
-            col.field == 'email' ||
-            col.field == 'dni' ||
-            col.field == 'username'
+            col.field === 'phone' ||
+            col.field === 'email' ||
+            col.field === 'dni' ||
+            col.field === 'username'
         );
         this.roles = [
           Role.Admin,
@@ -75,7 +77,6 @@ export class BoardAdminComponent implements OnInit {
   }
 
   set selectedColumns(val: any[]) {
-    console.log(this._selectedColumns);
     this._selectedColumns = this.cols.filter((col) => val.includes(col));
     console.log(val);
   }
@@ -84,11 +85,23 @@ export class BoardAdminComponent implements OnInit {
     this.userDialog = new UserClass();
     this.submitted = false;
     this.productDialog = true;
+    this.isUpdate = false;
+    this.isCreate = true;
+  }
+
+  editProduct(product: User): void {
+    this.userDialog = new UserClass();
+    this.userDialog = product;
+    this.submitted = false;
+    this.productDialog = true;
+    this.isCreate = false;
+    this.isUpdate = true;
   }
 
   saveProduct(): void {
     this.submitted = true;
     if (
+      this.isCreate &&
       this.userDialog.username &&
       this.userDialog.email &&
       this.userDialog.phone &&
@@ -119,6 +132,45 @@ export class BoardAdminComponent implements OnInit {
                 mistake.error.message,
               life: 4000,
             });
+          }
+        );
+      this.productDialog = false;
+      this.userDialog = new UserClass();
+    }
+
+    if (
+      this.isUpdate &&
+      this.userDialog.username &&
+      this.userDialog.email &&
+      this.userDialog.phone &&
+      this.userDialog.password &&
+      this.userDialog.dni
+    ) {
+      this.userService
+        .updateProduct(this.userDialog, this.userDialog.email)
+        .pipe(first())
+        .subscribe(
+          (data) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Correcto',
+              detail: 'Usuario Actualizado - ' + data.message,
+              life: 4000,
+            });
+            this.ngOnInit();
+          },
+          (mistake) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail:
+                'Usuario no Actualizado - ' +
+                mistake.error.errors +
+                ' - ' +
+                mistake.error.message,
+              life: 4000,
+            });
+            this.ngOnInit();
           }
         );
       this.productDialog = false;
@@ -205,6 +257,7 @@ export class BoardAdminComponent implements OnInit {
   hideDialog(): void {
     this.productDialog = false;
     this.submitted = false;
+    this.ngOnInit();
   }
   getEventValue($event: any): string {
     return $event.target.value;

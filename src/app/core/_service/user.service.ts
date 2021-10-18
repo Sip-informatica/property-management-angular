@@ -30,6 +30,10 @@ export class UserService {
     return this.http.get(environment.ADMIN_API + 'users-admin');
   }
 
+  updateProduct(user: User, userEmail?: string): Observable<any> {
+    return this.http.put(environment.ADMIN_API + 'users-admin/email/' + userEmail, user);
+  }
+
   getPublicContent(): Observable<any> {
     return this.http.get(environment.API_URL_TEST + 'all', httpOptions);
   }
