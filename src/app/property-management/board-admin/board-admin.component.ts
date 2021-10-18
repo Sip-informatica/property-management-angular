@@ -43,7 +43,13 @@ export class BoardAdminComponent implements OnInit {
         this.products = data;
         this.loading = false;
         this.updateColumns();
-        this._selectedColumns = this.cols;
+        this._selectedColumns = this.cols.filter(
+          (col) =>
+            col.field == 'phone' ||
+            col.field == 'email' ||
+            col.field == 'dni' ||
+            col.field == 'username'
+        );
         this.roles = [
           Role.Admin,
           Role.Manager,
@@ -69,7 +75,9 @@ export class BoardAdminComponent implements OnInit {
   }
 
   set selectedColumns(val: any[]) {
+    console.log(this._selectedColumns);
     this._selectedColumns = this.cols.filter((col) => val.includes(col));
+    console.log(val);
   }
 
   openNew(): void {
@@ -92,7 +100,6 @@ export class BoardAdminComponent implements OnInit {
         .pipe(first())
         .subscribe(
           (data) => {
-            console.log(data);
             this.messageService.add({
               severity: 'success',
               summary: 'Correcto',
@@ -125,14 +132,12 @@ export class BoardAdminComponent implements OnInit {
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log(this.selectedProducts);
         this.selectedProducts.forEach((user) => {
           this.userService
             .deleteProduct(user.email)
             .pipe(first())
             .subscribe(
               (data) => {
-                console.log(data);
                 this.messageService.add({
                   severity: 'success',
                   summary: 'Correcto',
@@ -171,7 +176,6 @@ export class BoardAdminComponent implements OnInit {
           .pipe(first())
           .subscribe(
             (data) => {
-              console.log(data);
               this.messageService.add({
                 severity: 'success',
                 summary: 'Correcto',
