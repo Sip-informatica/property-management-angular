@@ -50,6 +50,7 @@ export class BoardAdminComponent implements OnInit {
             col.field === 'phone' ||
             col.field === 'email' ||
             col.field === 'dni' ||
+            col.field === 'roles' ||
             col.field === 'username'
         );
         this.roles = [
@@ -78,7 +79,6 @@ export class BoardAdminComponent implements OnInit {
 
   set selectedColumns(val: any[]) {
     this._selectedColumns = this.cols.filter((col) => val.includes(col));
-    console.log(val);
   }
 
   openNew(): void {
