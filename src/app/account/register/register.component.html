@@ -101,7 +101,10 @@
         >
           <ng-template pTemplate="header">
             <p class="p-mt-2">Sugerencias</p>
-            <ul class="p-pl-2 p-ml-2 p-mt-0 p-text-left" style="line-height: 1.5">
+            <ul
+              class="p-pl-2 p-ml-2 p-mt-0 p-text-left"
+              style="line-height: 1.5"
+            >
               <li>Al menos una minúscula</li>
               <li>Al menos una mayúscula</li>
               <li>Al menos un número</li>
@@ -124,7 +127,7 @@
         </div>
       </div>
       <div class="p-field p-m-3">
-        <button pButton pRipple label="Registrar" icon="pi pi-sign-in"></button>
+        <button pButton pRipple label="Registrar" icon="pi pi-sign-in"  [loading]="loading"></button>
         <p-button routerLink="../login" styleClass="p-button-link"
           >Iniciar sesión</p-button
         >
