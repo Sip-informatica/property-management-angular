@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/_service/auth.service';
 import { TokenStorageService } from '@core/_service/token-storage.service';
-import { timeout } from 'rxjs/operators';
+import { finalize, first, timeout } from 'rxjs/operators';
 import { Logs } from 'selenium-webdriver';
 
 @Component({
@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
 
     this.authService
       .login(username, password)
-      .pipe(timeout(1000))
+      .pipe(first())
+      .pipe(finalize(() => this.loading = false))
       .subscribe(
         (data) => {
           this.tokenStorage.saveToken(data.token);
@@ -51,7 +52,6 @@ export class LoginComponent implements OnInit {
         (err) => {
           this.errorMessage = err.error.message;
           this.isLoginFailed = true;
-          this.loading = false;
         }
       );
   }
