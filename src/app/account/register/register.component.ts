@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/_service/auth.service';
-import { timeout } from 'rxjs/operators';
+import { finalize, first, timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +27,10 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     const { username, email, password } = this.form;
 
-    this.authService.register(username, email, password).subscribe(
+    this.authService.register(username, email, password)
+    .pipe(first())
+    .pipe(finalize(() => this.loading = false))
+    .subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
@@ -36,7 +39,6 @@ export class RegisterComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
-        this.loading = false;
       }
     );
   }
